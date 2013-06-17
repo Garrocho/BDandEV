@@ -13,6 +13,9 @@ cascade = cv.Load("../data/todo_corpo.xml")
 
 while True:
     imagem = cv.QueryFrame(camera)
+    if imagem is None:
+        print 'WebCam Desligada...'
+        break
     corpos_detectados = cv.HaarDetectObjects(imagem, cascade, cv.CreateMemStorage(), 1.2, 2, cv.CV_HAAR_DO_CANNY_PRUNING, (0, 0) )
     
     for ((x,y,w,h), stub) in corpos_detectados:
