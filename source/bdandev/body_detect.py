@@ -57,9 +57,8 @@ if __name__ == '__main__':
         imagem = cv.QueryFrame(camera)
         if not imagem:
             imagem = cv.CreateImage((640, 480), 8, 1)
-            fonte = cv.InitFont(cv.CV_FONT_HERSHEY_SIMPLEX, 1, 1, 0, 3, 8)
             cv.Zero(imagem)
-            cv.PutText(imagem, "WebCam Desligada...", (25, 30), fonte, 255)
+            imagem = escrever(imagem, "WebCam Desligada")
             cv.ShowImage("BDandEV", imagem)
             break
         else:
@@ -69,8 +68,7 @@ if __name__ == '__main__':
                 imagem = escrever(imagem, "Corpo Detectado")
             else:
                 imagem = escrever(imagem, "Nenhum Corpo Detectado")
-        
-        cv.ShowImage("BDandEV", imagem)
+            cv.ShowImage("BDandEV", imagem)
        
         c = cv.WaitKey(1)
         if c == 27:
