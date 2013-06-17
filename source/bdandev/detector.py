@@ -40,7 +40,10 @@ def colorir(imagem, corpos_detectados):
     return imagem
 
 
-
+def escrever(imagem, texto):
+    fonte = cv.InitFont(cv.CV_FONT_HERSHEY_SIMPLEX, 1, 1, 0, 2, 8)
+    cv.PutText(imagem, texto, (25,30), fonte, 0)
+    return imagem
     
 
 if __name__ == '__main__':
