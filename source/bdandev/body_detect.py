@@ -56,10 +56,7 @@ if __name__ == '__main__':
     while True:
         imagem = cv.QueryFrame(camera)
         if not imagem:
-            imagem = cv.CreateImage((640, 480), 8, 1)
-            cv.Zero(imagem)
-            imagem = escrever(imagem, "WebCam Desligada")
-            cv.ShowImage("BDandEV", imagem)
+            print "WebCam Desligada"
             break
         else:
             corpos_detectados = detectar_corpos(imagem, cascade)
