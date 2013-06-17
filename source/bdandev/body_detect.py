@@ -7,7 +7,7 @@ Este e o modulo que detecta um corpo.
 """
 
 import cv2.cv as cv
-from datetime import datetime
+
 
 TAMANHO_MENOR = (20, 20)
 ESCALA_IMAGEM = 2
@@ -48,7 +48,7 @@ def escrever(imagem, texto):
 
 if __name__ == '__main__':
 
-    cascade = cv.Load("../data/todo_corpo.xml")
+    cascade = cv.Load("../data/corpo_inteiro.xml")
     camera = cv.CreateCameraCapture(0)
 
     cv.NamedWindow("BDandEV", 1)
