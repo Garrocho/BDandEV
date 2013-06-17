@@ -15,6 +15,21 @@ escala_haar = 1.2
 minimo_vizinhos = 2
 bandeiras_haar = 0
 
+def detectar_corpos(imagem, cascade):
+
+    # Criando imagens temporarias.
+    gray = cv.CreateImage((imagem.width, imagem.height), 8, 1)
+    imagem_pequena = cv.CreateImage((cv.Round(imagem.width / escala_imagem), cv.Round(imagem.height / escala_imagem)), 8, 1)
+
+    # Converte a imagem em tons de cinza.
+    cv.CvtColor(imagem, gray, cv.CV_BGR2GRAY)
+
+    # Redimensiona imagem para um rapido processamento.
+    cv.Resize(gray, imagem_pequena, cv.CV_INTER_LINEAR)
+
+    cv.EqualizeHist(imagem_pequena, imagem_pequena)
+
+    return cv.HaarDetectObjects(imagem_pequena, cascade, cv.CreateMemStorage(0), escala_haar, minimo_vizinhos, bandeiras_haar, tamanho_menor)
 
     
 
