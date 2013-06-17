@@ -31,6 +31,16 @@ def detectar_corpos(imagem, cascade):
 
     return cv.HaarDetectObjects(imagem_pequena, cascade, cv.CreateMemStorage(0), escala_haar, minimo_vizinhos, bandeiras_haar, tamanho_menor)
 
+
+def colorir(imagem, corpos_detectados):
+    for ((x, y, w, h), n) in corpos_detectados:
+        pt1 = (int(x * escala_imagem), int(y * escala_imagem))
+        pt2 = (int((x + w) * escala_imagem), int((y + h) * escala_imagem))
+        cv.Rectangle(imagem, pt1, pt2, cv.RGB(255, 0, 0), 3, 8, 0)
+    return imagem
+
+
+
     
 
 if __name__ == '__main__':
