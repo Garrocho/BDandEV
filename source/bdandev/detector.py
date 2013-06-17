@@ -7,21 +7,45 @@ Este e o modulo que detecta um corpo.
 """
 
 import cv2.cv as cv
+from datetime import datetime
 
-camera = cv.CaptureFromCAM(0)
-cascade = cv.Load("../data/todo_corpo.xml")
+tamanho_menor = (20, 20)
+escala_imagem = 2
+escala_haar = 1.2
+minimo_vizinhos = 2
+bandeiras_haar = 0
 
-while True:
-    imagem = cv.QueryFrame(camera)
-    if imagem is None:
-        print 'WebCam Desligada...'
-        break
-    corpos_detectados = cv.HaarDetectObjects(imagem, cascade, cv.CreateMemStorage(), 1.2, 2, cv.CV_HAAR_DO_CANNY_PRUNING, (0, 0) )
+
     
-    for ((x,y,w,h), stub) in corpos_detectados:
-        cv.Rectangle(imagem, (int(x), int(y)), (int(x) + w, int(y) + h), (0, 255, 0), 2, 0)
 
-    cv.ShowImage("Janela", imagem)
-    c = cv.WaitKey(1)
-    if c == 27:
-        break
+if __name__ == '__main__':
+
+    cascade = cv.Load("../data/todo_corpo.xml")
+    camera = cv.CreateCameraCapture(0)
+
+    cv.NamedWindow("BDandEV", 1)
+
+    while True:
+        imagem = cv.QueryFrame(camera)
+        if not imagem:
+            imagem = cv.CreateImage((640, 480), 8, 1)
+            fonte = cv.InitFont(cv.CV_FONT_HERSHEY_SIMPLEX, 1, 1, 0, 3, 8)
+            cv.Zero(imagem)
+            cv.PutText(imagem, "WebCam Desligada...", (25, 30), fonte, 255)
+            cv.ShowImage("BDandEV", imagem)
+            break
+        else:
+            corpos_detectados = detectar_corpos(imagem, cascade)
+            if corpos_detectados:
+                imagem = colorir(imagem, corpos_detectados)
+                imagem = escrever(imagem, "Corpo Detectado")
+            else:
+                imagem = escrever(imagem, "Nenhum Corpo Detectado")
+        
+        cv.ShowImage("BDandEV", imagem)
+       
+        c = cv.WaitKey(1)
+        if c == 27:
+            break
+
+    cv.DestroyWindow("BDandEV")
