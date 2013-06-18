@@ -1,7 +1,3 @@
-# @author: Charles Tim Batista Garrocho
-# @contact: charles.garrocho@gmail.com
-# @copyright: (C) 2013 Python Software Open Source
-
 """
 Este e o pacote do projeto bdandev.
 """
