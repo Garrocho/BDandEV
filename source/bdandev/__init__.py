@@ -8,4 +8,5 @@ __version__ = '0.0.2'
 __all__ = [
     'body_detect',
     'estimate_values',
+    'settings.py',
 ]
