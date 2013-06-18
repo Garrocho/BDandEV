@@ -2,6 +2,7 @@
 Modulo que processa imagem da camera e detecta corpos.
 """
 
+import settings
 import cv2.cv as cv
 
 
@@ -37,7 +38,7 @@ def escrever(imagem, texto):
 
 if __name__ == '__main__':
 
-    cascade = cv.Load("../data/corpo_inteiro.xml")
+    cascade = cv.Load(settings.CORPO_INTEIRO)
     camera = cv.CreateCameraCapture(0)
 
     cv.NamedWindow("BDandEV", 1)
