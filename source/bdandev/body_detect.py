@@ -1,5 +1,5 @@
 """
-Este e o modulo que detecta um corpo.
+Modulo que processa imagem da camera e detecta corpos.
 """
 
 import cv2.cv as cv
