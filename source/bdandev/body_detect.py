@@ -7,7 +7,9 @@ import cv2.cv as cv
 
 
 def detectar_corpos(imagem, cascade):
-
+    """
+    Detecta corpos em uma determinada imagem de acordo com o cascade.
+    """
     # Criando imagens temporarias.
     gray = cv.CreateImage((imagem.width, imagem.height), 8, 1)
     imagem_pequena = cv.CreateImage((cv.Round(imagem.width / 2), cv.Round(imagem.height / 2)), 8, 1)
@@ -23,6 +25,9 @@ def detectar_corpos(imagem, cascade):
 
 
 def colorir(imagem, corpos_detectados):
+    """
+    Desenha um retangulo ao retor de um corpo.
+    """
     for ((x, y, w, h), n) in corpos_detectados:
         pt1 = (int(x * 2), int(y * 2))
         pt2 = (int((x + w) * 2), int((y + h) * 2))
@@ -31,6 +36,9 @@ def colorir(imagem, corpos_detectados):
 
 
 def escrever(imagem, texto):
+    """
+    Escreve um texto em uma imagem.
+    """
     fonte = cv.InitFont(cv.CV_FONT_HERSHEY_SIMPLEX, 1, 1, 0, 2, 8)
     cv.PutText(imagem, texto, (25,30), fonte, 0)
     return imagem
