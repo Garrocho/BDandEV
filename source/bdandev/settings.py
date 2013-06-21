@@ -4,6 +4,7 @@ Modulo responsavel pelas configuracoes globais do projeto.
 
 from os import path
 
+
 # Endereco dos codigos fontes do projeto.
 PATH_FONTE = path.abspath(path.dirname(__file__))
 
