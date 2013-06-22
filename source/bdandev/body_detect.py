@@ -35,7 +35,7 @@ def colorir(imagem, corpos_detectados):
     return imagem
 
 
-def escrever(imagem, texto):
+def escreve_texto(imagem, texto):
     """
     Escreve um texto em uma imagem.
     """
@@ -60,9 +60,9 @@ if __name__ == '__main__':
             corpos_detectados = detectar_corpos(imagem, cascade)
             if corpos_detectados:
                 imagem = colorir(imagem, corpos_detectados)
-                imagem = escrever(imagem, "Corpo Detectado")
+                imagem = escreve_texto(imagem, "Corpo Detectado")
             else:
-                imagem = escrever(imagem, "Nenhum Corpo Detectado")
+                imagem = escreve_texto(imagem, "Nenhum Corpo Detectado")
             cv.ShowImage("BDandEV", imagem)
        
         c = cv.WaitKey(1)
