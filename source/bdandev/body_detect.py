@@ -45,7 +45,9 @@ def escreve_texto(imagem, texto):
 
 
 if __name__ == '__main__':
-
+    """
+    Carrega o cascade e captura a camera para obter a imagem atual.
+    """
     cascade = cv.Load(settings.CORPO_INTEIRO)
     camera = cv.CreateCameraCapture(0)
 
